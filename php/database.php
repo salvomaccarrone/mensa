@@ -1,9 +1,9 @@
 <?php
 $config = [
     'db_engine' => 'mysql',
-    'db_host' => '127.0.0.1',
-    'db_name' => 'test',
-    'db_user' => 'root',
+    'db_host' => 'localhost',
+    'db_name' => 'my_canteenforyou',
+    'db_user' => 'canteenforyou',
     'db_password' => '',
 ];
 

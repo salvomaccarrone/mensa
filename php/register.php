@@ -4,6 +4,7 @@ require_once('database.php');
 if (isset($_POST['register'])) {
     $username = $_POST['username'] ?? '';
     $password = $_POST['password'] ?? '';
+    $re_password = $_POST['re_password'] ?? '';
     $isUsernameValid = filter_var(
         $username,
         FILTER_VALIDATE_REGEXP, [
@@ -23,6 +24,8 @@ if (isset($_POST['register'])) {
     } elseif ($pwdLenght < 8 || $pwdLenght > 20) {
         $msg = 'Lunghezza minima password 8 caratteri.
                 Lunghezza massima 20 caratteri';
+    } elseif ($password != $re_password) {
+        $msg = 'Le password non combaciano';
     } else {
         $password_hash = password_hash($password, PASSWORD_BCRYPT);
 
@@ -52,7 +55,7 @@ if (isset($_POST['register'])) {
             $check->execute();
             
             if ($check->rowCount() > 0) {
-                $msg = 'Registrazione eseguita con successo';
+                header('Location: ../login.html');
             } else {
                 $msg = 'Problemi con l\'inserimento dei dati %s';
             }
